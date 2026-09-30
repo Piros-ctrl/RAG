@@ -1,10 +1,11 @@
-import json
+# import json
 import pickle
 from pathlib import Path
-from typing import List
+# from typing import List
 
-from tqdm import tqdm
-from pick_chunk import Indexer
+# from tqdm import tqdm
+# from pick_chunk import Indexer
+
 
 class Retriever:
     def __init__(self, processed_dir: str = "data/processed") -> None:

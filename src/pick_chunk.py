@@ -1,5 +1,4 @@
 import pickle
-import re
 from pathlib import Path
 from typing import List
 
@@ -9,12 +8,20 @@ from tqdm import tqdm
 from chunking import chunking
 
 
-TOKEN_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_]*|\d+")
-
-
 def tokenize(text: str) -> List[str]:
     """Lowercase word/identifier tokenizer, splits snake_case-friendly."""
-    return [t.lower() for t in TOKEN_RE.findall(text)]
+    filted_text = []
+    word = ""
+    for char in text:
+        if char.alnum() or char == "_":
+            word += char
+        elif word:
+            filted_text.append(word.lower())
+            word = ""
+    if word:
+        filted_text.append(word.lower())
+
+    return filted_text
 
 
 class Indexer:
