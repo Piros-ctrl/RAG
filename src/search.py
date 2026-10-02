@@ -2,9 +2,8 @@
 import pickle
 from pathlib import Path
 # from typing import List
-
 # from tqdm import tqdm
-# from pick_chunk import Indexer
+from pick_chunk import tokenize
 
 
 class Retriever:
@@ -19,5 +18,7 @@ class Retriever:
         self.bm25 = data["bm25"]
         self.chunks = data["chunks"]
 
-    def sisi():
-        pass
+    def output(self, query):
+        tokenized_query = tokenize(query)
+        chunk_context = [chunk["page_content"] for chunk in self.chunks]
+        return self.bm25.get_top_n(tokenized_query, chunk_context, n=1)

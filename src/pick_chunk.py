@@ -13,7 +13,7 @@ def tokenize(text: str) -> List[str]:
     filted_text = []
     word = ""
     for char in text:
-        if char.alnum() or char == "_":
+        if char.isalnum() or char == "_":
             word += char
         elif word:
             filted_text.append(word.lower())
