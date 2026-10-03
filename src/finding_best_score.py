@@ -1,9 +1,5 @@
-# import json
 import pickle
 from pathlib import Path
-# from typing import List
-# from tqdm import tqdm
-from pick_chunk import tokenize
 
 
 class Retriever:
@@ -18,7 +14,5 @@ class Retriever:
         self.bm25 = data["bm25"]
         self.chunks = data["chunks"]
 
-    def piked_chunk(self, query, k):
-        tokenized_query = tokenize(query)
-        chunk = [chunk for chunk in self.chunks]
-        return self.bm25.get_top_n(tokenized_query, chunk, n=k)
+    def sisi():
+        

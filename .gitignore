@@ -10,3 +10,4 @@ wheels/
 .venv
 data/
 src/vllm-0.10.1/
+src/llm_sdk/

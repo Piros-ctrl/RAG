@@ -32,7 +32,7 @@ class Indexer:
         """Chunk the corpus, build a BM25 index, and persist it."""
         chunker = chunking()
         raw_chunks = chunker.chunks(
-            max_chunk_size, source_path)
+            source_path, max_chunk_size)
 
         chunks: List[dict] = [
             chunk for chunk in tqdm(raw_chunks, desc="chunking", unit=" files")
