@@ -1,15 +1,16 @@
 from pick_chunk import Indexer
 from search import Retriever
+from get_answer import Answer
 
 
 path = "data/raw/vllm-0.10.1"
 class CLI:
+
     def index(self, max_chunk_size: int = 2000):
         indexing = Indexer()
         indexing.build(path, max_chunk_size)
 
     def search(self, query: str, k: int = 10):
-
         chunk = Retriever()
         outputs = chunk.piked_chunk(query, k)
         for output in outputs:
@@ -25,7 +26,12 @@ class CLI:
         pass
 
     def answer(self, query: str, k: int = 10):
-        pass
+        retriev = Retriever()
+        chunks = retriev.piked_chunk(query, k)
+        respond = Answer(chunks, query)
+        print("\n\n\n\n")
+        print(query)
+        print(respond.generate_answer())
 
     def answer_dataset(self,
                        student_search_result_path: str,
