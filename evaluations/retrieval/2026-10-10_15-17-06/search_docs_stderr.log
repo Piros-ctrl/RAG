@@ -1,0 +1,32 @@
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]Loading weights:  60%|██████    | 188/311 [00:00<00:00, 1877.11it/s]Loading weights: 100%|██████████| 311/311 [00:00<00:00, 716.74it/s] 
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/p1rox/Documents/Rag/src/__main__.py", line 26, in <module>
+    main()
+    ~~~~^^
+  File "/home/p1rox/Documents/Rag/src/__main__.py", line 9, in main
+    fire.Fire(CLI)
+    ~~~~~~~~~^^^^^
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/fire/core.py", line 135, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/fire/core.py", line 468, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+                                ~~~~~~~~~~~~~~~~~~~^
+        component,
+        ^^^^^^^^^^
+    ...<2 lines>...
+        treatment='class' if is_class else 'routine',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        target=component.__name__)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/fire/core.py", line 684, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+  File "/home/p1rox/Documents/Rag/src/cli.py", line 31, in search_dataset
+    ret.save_result(dataset_path, k, save_directory)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/p1rox/Documents/Rag/src/search.py", line 52, in save_result
+    with open(s_dir, "w") as file:
+         ~~~~^^^^^^^^^^^^
+IsADirectoryError: [Errno 21] Is a directory: '/home/p1rox/Documents/Rag/evaluations/retrieval/2026-10-10_15-17-06/search_results'

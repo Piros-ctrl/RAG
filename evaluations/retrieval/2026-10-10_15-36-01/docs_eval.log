@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "run.py", line 6, in <module>
+  File "fire/core.py", line 135, in Fire
+  File "fire/core.py", line 468, in _Fire
+  File "fire/core.py", line 684, in _CallAndUpdateTrace
+  File "moulinette/__main__.py", line 55, in evaluate_student_search_results
+  File "moulinette/__main__.py", line 25, in load_student_search_results
+  File "moulinette/__main__.py", line 21, in load_json
+  File "json/__init__.py", line 293, in load
+  File "json/__init__.py", line 346, in loads
+  File "json/decoder.py", line 337, in decode
+  File "json/decoder.py", line 355, in raw_decode
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+[PYI-21046:ERROR] Failed to execute script 'run' due to unhandled exception!

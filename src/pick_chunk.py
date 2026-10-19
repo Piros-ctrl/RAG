@@ -1,4 +1,4 @@
-import pickle
+import pickle, re
 from pathlib import Path
 from typing import List
 
@@ -8,20 +8,24 @@ from tqdm import tqdm
 from chunking import chunking
 
 
-def tokenize(text: str) -> List[str]:
-    """Lowercase word/identifier tokenizer, splits snake_case-friendly."""
-    filted_text = []
-    word = ""
-    for char in text:
-        if char.isalnum() or char == "_":
-            word += char
-        elif word:
-            filted_text.append(word.lower())
-            word = ""
-    if word:
-        filted_text.append(word.lower())
 
-    return filted_text
+_WORD = re.compile(r"\w+")
+_PARTS = re.compile(r"[A-Z]+(?=[A-Z][a-z])|[A-Z]?[a-z]+|[A-Z]+|\d+")
+
+STOPWORDS = {
+    "the", "a", "an", "is", "are", "was", "were", "of", "to", "in", "on",
+    "for", "and", "or", "what", "how", "does", "do", "which", "that",
+    "this", "with", "as", "by", "it", "be", "can",
+}
+
+def tokenize(text: str) -> List[str]:
+    tokens = []
+    for word in _WORD.findall(text):
+        tokens.append(word.lower())            # full form: get_top_n
+        parts = [p.lower() for p in _PARTS.findall(word)]
+        if len(parts) > 1:
+            tokens.extend(parts)               # parts: get, top, n
+    return [t for t in tokens if t not in STOPWORDS]
 
 
 class Indexer:

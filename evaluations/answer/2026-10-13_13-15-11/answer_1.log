@@ -1,0 +1,7 @@
+
+
+
+
+
+What version of ROCm does vLLM support for AMD GPUs?
+The version of ROCm supported by vLLM for AMD GPUs is ROCm 6.3.

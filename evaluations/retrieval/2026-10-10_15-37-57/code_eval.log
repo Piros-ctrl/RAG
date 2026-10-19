@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "run.py", line 6, in <module>
+  File "fire/core.py", line 135, in Fire
+  File "fire/core.py", line 468, in _Fire
+  File "fire/core.py", line 684, in _CallAndUpdateTrace
+  File "moulinette/__main__.py", line 55, in evaluate_student_search_results
+  File "moulinette/__main__.py", line 25, in load_student_search_results
+  File "pydantic/main.py", line 250, in __init__
+pydantic_core._pydantic_core.ValidationError: 1 validation error for StudentSearchResults
+search_results
+  Field required [type=missing, input_value={'search_result': [{'ques...dex': 2585}]}], 'k': 10}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+[PYI-21495:ERROR] Failed to execute script 'run' due to unhandled exception!

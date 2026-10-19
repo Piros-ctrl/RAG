@@ -1,0 +1,310 @@
+Traceback (most recent call last):
+  File "run.py", line 6, in <module>
+  File "fire/core.py", line 135, in Fire
+  File "fire/core.py", line 468, in _Fire
+  File "fire/core.py", line 684, in _CallAndUpdateTrace
+  File "moulinette/__main__.py", line 55, in evaluate_student_search_results
+  File "moulinette/__main__.py", line 25, in load_student_search_results
+  File "pydantic/main.py", line 250, in __init__
+pydantic_core._pydantic_core.ValidationError: 100 validation errors for StudentSearchResults
+search_results.0.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'cabd7283...aracter_index': 18889}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.1.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '48723b36...aracter_index': 20523}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.2.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '4c4ebbe5...haracter_index': 1444}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.3.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '5efb683c...haracter_index': 1461}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.4.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'd297256a...haracter_index': 4870}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.5.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'a35f8e5c...aracter_index': 15043}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.6.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '05f46d68...haracter_index': 6723}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.7.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '119ee232...haracter_index': 1744}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.8.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '86cdf181...character_index': 651}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.9.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '8cd91e0b...haracter_index': 3741}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.10.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '4fa0b47e...haracter_index': 7095}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.11.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '1df79b11...aracter_index': 61390}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.12.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '15f860cf...aracter_index': 28233}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.13.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'cc0122c5...haracter_index': 7365}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.14.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '0687aaac...aracter_index': 10917}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.15.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'bb180116...aracter_index': 22429}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.16.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '6fb26de3...haracter_index': 9356}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.17.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'b1acc1e4...haracter_index': 5975}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.18.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'd90985f8...aracter_index': 24170}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.19.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '4359855c...haracter_index': 2819}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.20.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '78000605...aracter_index': 20572}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.21.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '37c64d82...haracter_index': 8783}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.22.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '911a3c9f...haracter_index': 1379}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.23.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '19a12584...haracter_index': 6477}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.24.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '1f13adef...aracter_index': 31870}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.25.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'f2ef0792...haracter_index': 3483}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.26.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'd095b765...aracter_index': 41535}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.27.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '000c490a...haracter_index': 4373}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.28.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '1143f5a0...haracter_index': 1864}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.29.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'd28499a0...haracter_index': 2647}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.30.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '4546f17e...haracter_index': 1950}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.31.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'ba82d366...haracter_index': 1780}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.32.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'e9c548e7...haracter_index': 8513}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.33.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'a7cdfc2f...haracter_index': 7329}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.34.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '2221846e...aracter_index': 18699}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.35.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '75b6eb17...haracter_index': 1949}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.36.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '00c7bd31...haracter_index': 5441}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.37.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'c9a275c7...aracter_index': 49000}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.38.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '9affdf84...haracter_index': 1968}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.39.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'f5c0820b...aracter_index': 22231}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.40.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '82628ee8...haracter_index': 1758}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.41.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '81a9731a...haracter_index': 7759}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.42.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'd41cd2f0...haracter_index': 6228}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.43.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'a18ed448...haracter_index': 1976}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.44.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '4ed023b4...haracter_index': 3465}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.45.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'fc24d926...haracter_index': 3248}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.46.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '08757840...haracter_index': 1902}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.47.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '589f868e...haracter_index': 2473}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.48.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'b8a46091...aracter_index': 12046}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.49.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '342cae04...haracter_index': 1969}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.50.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'c4f14fa2...aracter_index': 15127}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.51.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'e15e904e...aracter_index': 26272}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.52.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'b2dc987d...aracter_index': 26272}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.53.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'dbd231f0...haracter_index': 5995}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.54.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '809ea866...haracter_index': 1685}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.55.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '221870a6...aracter_index': 19289}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.56.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '7d46234d...haracter_index': 1914}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.57.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '34f98955...haracter_index': 3009}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.58.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'f1d07e49...haracter_index': 2348}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.59.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'f618fbb0...haracter_index': 1117}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.60.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '0226c9c0...haracter_index': 1992}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.61.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'd80c7cd8...aracter_index': 15111}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.62.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '3fa22a76...haracter_index': 1957}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.63.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '9e6862af...aracter_index': 19290}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.64.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'a22654d9...haracter_index': 3255}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.65.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'e40e7faa...haracter_index': 1976}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.66.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '8c662572...haracter_index': 3826}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.67.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'a96d6061...haracter_index': 5013}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.68.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'f3920065...haracter_index': 1726}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.69.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '01d5bf8f...haracter_index': 1980}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.70.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '84207edf...haracter_index': 3706}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.71.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '7039184d...haracter_index': 1969}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.72.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'c01049a5...character_index': 990}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.73.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '84b1c627...aracter_index': 32340}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.74.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'b7146344...aracter_index': 13142}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.75.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'd6dc96bc...haracter_index': 3818}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.76.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '0df7ace4...haracter_index': 3172}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.77.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '24e3e648...haracter_index': 2137}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.78.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'c53b8adc...haracter_index': 1057}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.79.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '8b1b63a7...haracter_index': 5842}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.80.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '659fafbd...aracter_index': 94552}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.81.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '3451b521...haracter_index': 7235}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.82.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '5f23cb6a...haracter_index': 5457}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.83.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '62e2b851...haracter_index': 5696}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.84.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '09bf53bf...haracter_index': 9356}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.85.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '45b3ff0f...haracter_index': 1236}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.86.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '890f10b4...aracter_index': 10535}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.87.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '2adf7274...haracter_index': 7233}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.88.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '6843b7c5...aracter_index': 18736}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.89.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '519c6e57...character_index': 763}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.90.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '035fc75a...haracter_index': 1983}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.91.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'add354cd...haracter_index': 8359}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.92.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'a2325363...haracter_index': 1979}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.93.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'c8095f4d...haracter_index': 7233}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.94.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '10bf9dae...haracter_index': 1993}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.95.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '5ff10124...aracter_index': 11595}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.96.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '365c203f...haracter_index': 1988}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.97.retrieved_sources
+  Field required [type=missing, input_value={'question_id': 'd9586da9...haracter_index': 1969}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.98.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '7954dc59...haracter_index': 6802}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+search_results.99.retrieved_sources
+  Field required [type=missing, input_value={'question_id': '84a96608...aracter_index': 11424}]}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+[PYI-7556:ERROR] Failed to execute script 'run' due to unhandled exception!

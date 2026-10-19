@@ -1,0 +1,9 @@
+The Python packages needed to use vLLM with LangChain are:
+
+- vLLM
+- langchain
+- langchain_milvus
+- langchain_openai
+- langchain_community
+- beautifulsoup4
+- langchain_text_splitters

@@ -1,12 +1,18 @@
-from llm_sdk.llm_sdk import Small_LLM_Model
+from src.models import AnsweredQuestion, MinimalSource
+from search import Retriever
+import json
 
 
 class Answer:
 
-    def __init__(self, chunks, query):
+    def __init__(self, qwen, chunks, query, question_id):
         self.chunks = chunks
         self.query = query
-        self.qwen = Small_LLM_Model()
+        self.qwen = qwen
+        self.question_id = question_id
+        self.eos = {self.qwen.encode("<|im_end|>")[0].tolist()[0],
+                    self.qwen.encode("<|endoftext|>")[0].tolist()[0]
+                    }
 
     def _prompt(self):
             context_list = [content["page_content"] for content in self.chunks]
@@ -28,19 +34,22 @@ class Answer:
                     )
 
     def _tokiniz(self):
-        return self.qwen.encode(self._prompt()).tolist()[0]
+        text = (
+            "<|im_start|>user\n"
+            f"{self._prompt()}<|im_end|>\n"
+            "<|im_start|>assistant\n"
+            "<think>\n\n</think>\n\n"
+        )
+        return self.qwen.encode(text).tolist()[0]
 
     def generate_answer(self):
         encoded_prompt = self._tokiniz()
-        i = 0
         respond = ""
-        while i < 40:
+        while 1:
             logits = self.qwen.get_logits_from_input_ids(encoded_prompt)
-            final_token = logits.index(max(logits))
-            encoded_prompt.append(final_token)
-            respond += self.qwen.decode([final_token])
-            i += 1
+            next_token = logits.index(max(logits))
+            encoded_prompt.append(next_token)
+            respond += self.qwen.decode([next_token])
+            if next_token in self.eos:
+                 break
         return respond
-
-    def result(self):
-        return self.generate_answer()

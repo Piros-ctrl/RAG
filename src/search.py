@@ -1,9 +1,15 @@
 # import json
 import pickle
+import json, os
 from pathlib import Path
 # from typing import List
 # from tqdm import tqdm
-from pick_chunk import tokenize
+from src.pick_chunk import tokenize
+from src.models import (RagDataset,
+                        MinimalSource,
+                        UnansweredQuestion,
+                        MinimalSearchResults,
+                        StudentSearchResults)
 
 
 class Retriever:
@@ -22,3 +28,47 @@ class Retriever:
         tokenized_query = tokenize(query)
         chunk = [chunk for chunk in self.chunks]
         return self.bm25.get_top_n(tokenized_query, chunk, n=k)
+
+    def creat_dataset(self, dataset, k):
+            search_result = []
+            with open(dataset, "r") as p_file:
+                data = RagDataset.model_validate_json(p_file.read())
+
+            for data in data.rag_questions:
+                question_obj = UnansweredQuestion(
+                    question_id=data.question_id,
+                    question=data.question
+                )
+                question = question_obj.model_dump()
+                outputs = self.piked_chunk(data.question, k)
+                retrieved_sources = []
+
+                for output in outputs:
+                    source = MinimalSource(
+                        file_path=output["file_path"],
+                        first_character_index=output["first_char"],
+                        last_character_index=output["last_char"]
+                    )
+                    retrieved_sources.append(source)
+
+                resutl = MinimalSearchResults(
+                    question_id=question["question_id"],
+                    question=question["question"],
+                    retrieved_sources=retrieved_sources
+                )
+
+                search_result.append(resutl)
+            output = StudentSearchResults(
+                search_results=search_result,
+                k=k
+            )
+            return output.model_dump()
+
+    def save_result(self,dataset, k, s_dir):
+        os.makedirs(s_dir, exist_ok=True)
+
+        name = os.path.splitext(os.path.basename(dataset))[0]
+        output_file = os.path.join(s_dir, f"{name}_k{k}.json")
+
+        with open(output_file, "w") as file:
+            json.dump(self.creat_dataset(dataset, k), file, indent=4)
