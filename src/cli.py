@@ -3,6 +3,7 @@ from pick_chunk import Indexer
 from search import Retriever
 from get_answer import Answer
 from llm_sdk.llm_sdk import Small_LLM_Model
+from src.evaluation import eval
 from src.models import (MinimalAnswer,
                         StudentSearchResultsAndAnswer)
 
@@ -26,8 +27,8 @@ class CLI:
 
     def search_dataset(self,
                         dataset_path: str,
-                        k: int = 10,
-                        save_directory: str="data/output/search_results.json"
+                        k: int = 5,
+                        save_directory: str="data/search_results/search_results.json"
                         ):
         ret = Retriever()
         ret.save_result(dataset_path, k, save_directory)
@@ -80,4 +81,12 @@ class CLI:
                 student_search_result_path: str,
                 dataset_path: str,
                 k: int = 10):
-        pass
+        print("Starting evaluation...")
+
+        eval(
+            dataset_path,
+            student_search_result_path,
+            k
+        )
+
+        print("Evaluation End")

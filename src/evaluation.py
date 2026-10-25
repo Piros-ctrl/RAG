@@ -1,62 +1,136 @@
 
 import json
-from pathlib import Path
 
 
-def recall_at_k(
-    expected_sources: list[str],
-    retrieved_sources: list[str],
-    k: int,
-) -> float:
-    """Calculate recall for one question."""
-    expected = set(expected_sources)
-    retrieved = set(retrieved_sources[:k])
+def load_json(path):
+    with open(path, "r", encoding="utf-8") as file:
+        return json.load(file)
 
-    if not expected:
+
+def calculate_iou(dataset, s_result):
+    if dataset["file_path"] != s_result["file_path"]:
         return 0.0
 
-    return len(expected & retrieved) / len(expected)
+    dataset_start = dataset["first_character_index"]
+    dataset_end = dataset["last_character_index"]
+    s_result_start = s_result["first_character_index"]
+    s_result_end = s_result["last_character_index"]
+
+    intersection = max(
+        0,
+        min(dataset_end, s_result_end)
+        - max(dataset_start, s_result_start),
+    )
+
+    union = max(dataset_end, s_result_end) - min(
+        dataset_start, s_result_start
+    )
+
+    if union <= 0:
+        return 0.0
+
+    return intersection / union
 
 
-def evaluate(
-    dataset_path: str,
-    results_path: str,
-    k_values: list[int] = [1, 3, 5, 10],
-) -> None:
-    """Compare retrieved sources with expected sources."""
-    with open(dataset_path, encoding="utf-8") as file:
-        dataset = json.load(file)
+def is_chunk_valid(dataset, s_result, iou_threshold):
+    return calculate_iou(dataset, s_result) >= iou_threshold
 
-    with open(results_path, encoding="utf-8") as file:
-        results = json.load(file)
 
-    scores = {k: [] for k in k_values}
+def recall_number_k(expected_s, retrieved_s, k, iou_threshold):
+    if not expected_s:
+        return None
 
-    for question, result in zip(
-        dataset["questions"], results["questions"]
-    ):
-        expected = question["source"]
-        retrieved = result["sources"]
+    k_retrieved = retrieved_s[:k]
+    matched = 0
+    for expected in expected_s:
+        for retrieved in k_retrieved:
+            if is_chunk_valid(expected, retrieved, iou_threshold):
+                matched += 1
+                break
+    
+    return matched / len(expected_s)
 
-        # Support either one source or a list of sources.
-        if isinstance(expected, str):
-            expected = [expected]
 
-        for k in k_values:
-            scores[k].append(
-                recall_at_k(expected, retrieved, k)
+def eval(
+    dataset_path,
+    student_search_result_path,
+    k=10,
+    iou_threshold=0.05,
+):
+    dataset = load_json(dataset_path)
+    student_data = load_json(student_search_result_path)
+
+    questions = dataset["rag_questions"]
+    student_results = student_data["search_results"]
+
+    # Match each student result to its question ID.
+    student_by_id = {
+        result["question_id"]: result["retrieved_sources"]
+        for result in student_results
+    }
+
+    # Only evaluate questions with matching student results
+    # and at least one ground-truth source.
+    evaluated_questions = []
+    missing_questions = 0
+
+    for question in questions:
+        question_id = question["question_id"]
+        expected_sources = question.get("sources", [])
+
+        if question_id not in student_by_id:
+            continue
+
+        evaluated_questions.append(
+            (question["sources"], student_by_id[question_id])
+        )
+
+    print("Starting evaluation...")
+    print("------------------------------")
+    print(f"Dataset questions: {len(questions)}")
+    print(f"Student results: {len(student_results)}")
+    print(f"Questions evaluated: {len(evaluated_questions)}")
+    print(f"IoU threshold: {iou_threshold}")
+    print("------------------------------")
+
+    if not evaluated_questions:
+        print("No questions available for evaluation.")
+        return {}
+
+    # Calculate macro-average Recall@k across evaluated questions.
+    k_values = [value for value in (1, 3, 5, 10) if value <= k]
+
+    if k not in k_values:
+        k_values.append(k)
+
+    results = {}
+
+    for current_k in sorted(set(k_values)):
+        question_recalls = []
+
+        for expected_sources, student_result in evaluated_questions:
+
+            recall = recall_number_k(
+                expected_sources,
+                student_result,
+                current_k,
+                iou_threshold,
             )
 
-    print("Chunking evaluation")
-    print("-" * 30)
+            if recall is not None:
+                question_recalls.append(recall)
 
-    for k, values in scores.items():
-        recall = sum(values) / len(values) if values else 0.0
-        print(f"Recall@{k}: {recall:.3f}")
+        if question_recalls:
+            average_recall = sum(question_recalls) / len(question_recalls)
+            results[current_k] = average_recall
 
+    print("\nEvaluation Results")
+    print("========================================")
 
-if __name__ == "__main__":
-    evaluate(
-        dataset_path="data/evaluation.json",
-        results_path="data/search_results.json",
-    )
+    for current_k, recall in results.items():
+        print(
+            f"Recall@{current_k}: "
+            f"{recall:.3f} ({recall * 100:.1f}%)"
+        )
+
+    return results

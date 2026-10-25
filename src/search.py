@@ -68,7 +68,7 @@ class Retriever:
         os.makedirs(s_dir, exist_ok=True)
 
         name = os.path.splitext(os.path.basename(dataset))[0]
-        output_file = os.path.join(s_dir, f"{name}_k{k}.json")
+        output_file = os.path.join(s_dir, "search_results.json")
 
         with open(output_file, "w") as file:
             json.dump(self.creat_dataset(dataset, k), file, indent=4)
