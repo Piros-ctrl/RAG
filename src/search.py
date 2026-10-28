@@ -2,9 +2,7 @@
 import pickle
 import json, os
 from pathlib import Path
-# from typing import List
-# from tqdm import tqdm
-from src.pick_chunk import tokenize
+import bm25s
 from src.models import (RagDataset,
                         MinimalSource,
                         UnansweredQuestion,
@@ -14,20 +12,23 @@ from src.models import (RagDataset,
 
 class Retriever:
     def __init__(self, processed_dir: str = "data/processed") -> None:
-        index_path = Path(processed_dir) / "bm25_index.pkl"
+        index_path = Path(processed_dir) / "bm25_index"
         if not index_path.exists():
             raise FileNotFoundError(
                 f"No index found at {index_path}. Run 'index' first."
             )
-        with open(index_path, "rb") as f:
-            data = pickle.load(f)
-        self.bm25 = data["bm25"]
-        self.chunks = data["chunks"]
+        self.bm25 = bm25s.BM25.load(str(index_path), load_corpus=True)
+        self.num_chunks = self.bm25.scores["num_docs"]
 
-    def piked_chunk(self, query, k):
-        tokenized_query = tokenize(query)
-        chunk = [chunk for chunk in self.chunks]
-        return self.bm25.get_top_n(tokenized_query, chunk, n=k)
+    def piked_chunk(self, query: str, k: int) -> List[Dict[str, Any]]:
+        k = min(k, self.num_chunks)
+
+        query_tokens = bm25s.tokenize(query)
+        if len(query_tokens.ids[0]) == 0:
+            return []
+
+        docs, _scores = self.bm25.retrieve(query_tokens, k=k)
+        return list(docs[0])
 
     def creat_dataset(self, dataset, k):
             search_result = []
@@ -68,7 +69,12 @@ class Retriever:
         os.makedirs(s_dir, exist_ok=True)
 
         name = os.path.splitext(os.path.basename(dataset))[0]
-        output_file = os.path.join(s_dir, "search_results.json")
+        if not name.endswith(".json"):
+            name += ".json"
+        output_file = os.path.join(s_dir, name)
 
         with open(output_file, "w") as file:
             json.dump(self.creat_dataset(dataset, k), file, indent=4)
+
+        print(f"The operation Done file saved in {output_file}")
+

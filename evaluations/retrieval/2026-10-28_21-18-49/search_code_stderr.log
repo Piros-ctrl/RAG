@@ -1,0 +1,136 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/p1rox/Documents/Rag/src/__main__.py", line 8, in <module>
+    main()
+    ~~~~^^
+  File "/home/p1rox/Documents/Rag/src/__main__.py", line 6, in main
+    fire.Fire(CLI)
+    ~~~~~~~~~^^^^^
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/fire/core.py", line 135, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/fire/core.py", line 468, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+                                ~~~~~~~~~~~~~~~~~~~^
+        component,
+        ^^^^^^^^^^
+    ...<2 lines>...
+        treatment='class' if is_class else 'routine',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        target=component.__name__)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/fire/core.py", line 684, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+  File "/home/p1rox/Documents/Rag/src/cli.py", line 14, in __init__
+    self.qwen = Small_LLM_Model()
+                ~~~~~~~~~~~~~~~^^
+  File "/home/p1rox/Documents/Rag/src/llm_sdk/llm_sdk/__init__.py", line 63, in __init__
+    self._model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        model_name,
+        ^^^^^^^^^^^
+    ...<2 lines>...
+        trust_remote_code=trust_remote_code,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/transformers/models/auto/auto_factory.py", line 291, in from_pretrained
+    hub_kwargs["revision"] = resolve_revision(
+                             ~~~~~~~~~~~~~~~~^
+        pretrained_model_name_or_path,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        cache_dir=hub_kwargs.get("cache_dir"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/transformers/utils/hub.py", line 287, in resolve_revision
+    return hf_api().resolve_revision(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        str(path_or_repo_id),
+        ^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        token=token,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/huggingface_hub/utils/_http.py", line 266, in _inner
+    return fn(*args, **kwargs)
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/huggingface_hub/hf_api.py", line 3747, in resolve_revision
+    sha = self.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision, token=token).sha
+          ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/huggingface_hub/hf_api.py", line 3643, in repo_info
+    return method(
+        repo_id,
+    ...<4 lines>...
+        files_metadata=files_metadata,
+    )
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/huggingface_hub/hf_api.py", line 3322, in model_info
+    r = get_session().get(path, headers=headers, timeout=timeout, params=params)
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpx/_client.py", line 1053, in get
+    return self.request(
+           ~~~~~~~~~~~~^
+        "GET",
+        ^^^^^^
+    ...<7 lines>...
+        extensions=extensions,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpx/_client.py", line 914, in send
+    response = self._send_handling_auth(
+        request,
+    ...<2 lines>...
+        history=[],
+    )
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpx/_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+        request,
+        follow_redirects=follow_redirects,
+        history=history,
+    )
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpx/_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpx/_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpx/_transports/default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpcore/_sync/connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpcore/_sync/connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+        pool_request.request
+    )
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpcore/_sync/connection.py", line 103, in handle_request
+    return self._connection.handle_request(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpcore/_sync/http11.py", line 136, in handle_request
+    raise exc
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpcore/_sync/http11.py", line 106, in handle_request
+    ) = self._receive_response_headers(**kwargs)
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpcore/_sync/http11.py", line 177, in _receive_response_headers
+    event = self._receive_event(timeout=timeout)
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpcore/_sync/http11.py", line 217, in _receive_event
+    data = self._network_stream.read(
+        self.READ_NUM_BYTES, timeout=timeout
+    )
+  File "/home/p1rox/Documents/Rag/.venv/lib/python3.14/site-packages/httpcore/_backends/sync.py", line 128, in read
+    return self._sock.recv(max_bytes)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.14/ssl.py", line 1296, in recv
+    return self.read(buflen)
+           ~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.14/ssl.py", line 1151, in read
+    return self._sslobj.read(len)
+           ~~~~~~~~~~~~~~~~~^^^^^
+KeyboardInterrupt

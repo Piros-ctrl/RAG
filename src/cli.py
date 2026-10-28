@@ -28,7 +28,7 @@ class CLI:
     def search_dataset(self,
                         dataset_path: str,
                         k: int = 5,
-                        save_directory: str="data/search_results/search_results.json"
+                        save_directory: str="data/search_results"
                         ):
         ret = Retriever()
         ret.save_result(dataset_path, k, save_directory)
@@ -42,7 +42,7 @@ class CLI:
 
     def answer_dataset(self,
                        student_search_result_path: str,
-                       save_directory: str="data/output/search_result_and_answer.json",
+                       save_directory: str="data/output",
                        k: int=5
                        ):
         chunk = Retriever()
@@ -50,7 +50,7 @@ class CLI:
         with open(student_search_result_path, "r") as file:
             data = json.load(file)
 
-        answers = data["search_result"]
+        answers = data["search_results"]
         results = []
         for answer in answers:
             chunks = chunk.piked_chunk(answer["question"], k)
@@ -74,8 +74,10 @@ class CLI:
                 k=k
             )
 
-        with open(save_directory, "w") as file:
+        with open(save_directory + "/search_result_and_answer.json", "w") as file:
             json.dump(output.model_dump(), file, indent=4)
+
+        print(f"The operation Done file saved in {save_directory}")
 
     def evaluate(self,
                 student_search_result_path: str,

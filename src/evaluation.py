@@ -85,7 +85,6 @@ def eval(
             (question["sources"], student_by_id[question_id])
         )
 
-    print("Starting evaluation...")
     print("------------------------------")
     print(f"Dataset questions: {len(questions)}")
     print(f"Student results: {len(student_results)}")
