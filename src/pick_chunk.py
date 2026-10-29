@@ -6,7 +6,10 @@ from chunking import chunking
 
 
 class Indexer:
+    """Build and save a BM25 index from the chunked corpus."""
+
     def __init__(self, processed_dir: str = "data/processed") -> None:
+        """Set the folder where the index will be saved."""
         self.processed_dir = Path(processed_dir)
 
     def build(self, source_path: str, max_chunk_size: int) -> None:

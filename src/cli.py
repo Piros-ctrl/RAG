@@ -13,14 +13,19 @@ path = "data/raw/vllm-0.10.1"
 
 
 class CLI:
-    def __init__(self):
+    """Command line interface for indexing, searching and answering."""
+
+    def __init__(self) -> None:
+        """Load the small LLM model."""
         self.qwen = Small_LLM_Model()
 
-    def index(self, max_chunk_size: int = 2000):
+    def index(self, max_chunk_size: int = 2000) -> None:
+        """Build the chunk index from the raw data folder."""
         indexing = Indexer()
         indexing.build(path, max_chunk_size)
 
-    def search(self, query: str, k: int = 10):
+    def search(self, query: str, k: int = 10) -> None:
+        """Print the top k chunk locations matching the query."""
         chunk = Retriever()
         outputs = chunk.piked_chunk(query, k)
         for output in outputs:
@@ -29,15 +34,17 @@ class CLI:
                 f"[{output['first_char']}:{output['last_char']}]")
 
     def search_dataset(
-                        self,
-                        dataset_path: str,
-                        k: int = 5,
-                        save_directory: str = "data/search_results"
-                        ):
+            self,
+            dataset_path: str,
+            k: int = 5,
+            save_directory: str = "data/search_results"
+                        ) -> None:
+        """Run the search on a whole dataset and save the results."""
         ret = Retriever()
         ret.save_result(dataset_path, k, save_directory)
 
-    def answer(self, query: str, k: int = 10):
+    def answer(self, query: str, k: int = 10) -> None:
+        """Retrieve k chunks for the query and print the generated answer."""
         retriev = Retriever()
         chunks = retriev.piked_chunk(query, k)
         question_id = str(uuid.uuid4())
@@ -48,7 +55,8 @@ class CLI:
                        student_search_result_path: str,
                        save_directory: str = "data/output",
                        k: int = 5
-                       ):
+                       ) -> None:
+        """Answer every question of a search result file and save them."""
         chunk = Retriever()
 
         with open(student_search_result_path, "r") as file:
@@ -85,10 +93,11 @@ class CLI:
         print(f"The operation Done file saved in {s_dir}")
 
     def evaluate(
-                self,
-                student_search_result_path: str,
-                dataset_path: str,
-                k: int = 10):
+            self,
+            student_search_result_path: str,
+            dataset_path: str,
+            k: int = 10) -> None:
+        """Evaluate the search results against the dataset."""
         print("Starting evaluation...")
 
         eval(

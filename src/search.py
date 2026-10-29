@@ -11,7 +11,10 @@ from src.models import (RagDataset,
 
 
 class Retriever:
+    """Load the BM25 index and retrieve chunks for questions."""
+
     def __init__(self, processed_dir: str = "data/processed") -> None:
+        """Load the saved BM25 index, or fail if it does not exist."""
         index_path = Path(processed_dir) / "bm25_index"
         if not index_path.exists():
             raise FileNotFoundError(
@@ -21,6 +24,7 @@ class Retriever:
         self.num_chunks = self.bm25.scores["num_docs"]
 
     def piked_chunk(self, query: str, k: int) -> List[Dict[str, Any]]:
+        """Return the top k chunks that best match the query."""
         k = min(k, self.num_chunks)
 
         query_tokens = bm25s.tokenize(query)
@@ -30,7 +34,8 @@ class Retriever:
         docs, _scores = self.bm25.retrieve(query_tokens, k=k)
         return list(docs[0])
 
-    def creat_dataset(self, dataset, k):
+    def creat_dataset(self, dataset: str, k: int) -> Dict[str, Any]:
+        """Retrieve k sources for every dataset question and return them."""
         search_result = []
         with open(dataset, "r") as p_file:
             data = RagDataset.model_validate_json(p_file.read())
@@ -65,7 +70,8 @@ class Retriever:
         )
         return output.model_dump()
 
-    def save_result(self, dataset, k, s_dir):
+    def save_result(self, dataset: str, k: int, s_dir: str) -> None:
+        """Run the search on the dataset and save the results as JSON."""
         os.makedirs(s_dir, exist_ok=True)
 
         name = os.path.splitext(os.path.basename(dataset))[0]
@@ -77,4 +83,3 @@ class Retriever:
             json.dump(self.creat_dataset(dataset, k), file, indent=4)
 
         print(f"The operation Done file saved in {output_file}")
-

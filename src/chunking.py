@@ -4,7 +4,12 @@ from langchain_text_splitters import (
 
 
 class chunking:
-    def exctract_paths(self, source_path):
+    """Read md, py and txt files from a directory and split them to chunks."""
+
+    def exctract_paths(
+                self, source_path: str
+                    ) -> dict[str, list[dict[str, str]]]:
+        """Collect path and content of every md, py and txt file found."""
         directory = Path(source_path)
         md = []
         py = []
@@ -14,7 +19,7 @@ class chunking:
             if path.is_file() and path.suffix in [".md", ".py", ".txt"]:
                 file_content = path.read_text(
                     encoding="utf-8", errors="replace"
-                    )
+                )
                 if path.suffix == ".md":
                     md.append({
                         "path": str(path),
@@ -31,7 +36,8 @@ class chunking:
                 "py": py,
                 "txt": txt}
 
-    def chunks(self, path, chunk_size):
+    def chunks(self, path: str, chunk_size: int) -> list[dict[str, str | int]]:
+        """Split the files under path into chunks with their char positions."""
         files = self.exctract_paths(path)
         md_txt_files = files["md"] + files["txt"]
         py_files = files["py"]

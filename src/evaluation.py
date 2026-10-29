@@ -1,13 +1,15 @@
-
 import json
+from typing import Any
 
 
-def load_json(path):
+def load_json(path: str) -> Any:
+    """Read a JSON file and return its parsed content."""
     with open(path, "r", encoding="utf-8") as file:
         return json.load(file)
 
 
-def calculate_iou(dataset, s_result):
+def calculate_iou(dataset: dict[str, Any], s_result: dict[str, Any]) -> float:
+    """Return the overlap ratio (IoU) of two chunks from the same file."""
     if dataset["file_path"] != s_result["file_path"]:
         return 0.0
 
@@ -32,11 +34,22 @@ def calculate_iou(dataset, s_result):
     return intersection / union
 
 
-def is_chunk_valid(dataset, s_result, iou_threshold):
+def is_chunk_valid(
+    dataset: dict[str, Any],
+    s_result: dict[str, Any],
+    iou_threshold: float
+) -> bool:
+    """Check if the IoU of two chunks reaches the threshold."""
     return calculate_iou(dataset, s_result) >= iou_threshold
 
 
-def recall_number_k(expected_s, retrieved_s, k, iou_threshold):
+def recall_number_k(
+    expected_s: list[dict[str, Any]],
+    retrieved_s: list[dict[str, Any]],
+    k: int,
+    iou_threshold: float
+) -> float | None:
+    """Return the share of expected sources found in the top k results."""
     if not expected_s:
         return None
 
@@ -52,11 +65,12 @@ def recall_number_k(expected_s, retrieved_s, k, iou_threshold):
 
 
 def eval(
-    dataset_path,
-    student_search_result_path,
-    k=10,
-    iou_threshold=0.05,
-):
+    dataset_path: str,
+    student_search_result_path: str,
+    k: int = 10,
+    iou_threshold: float = 0.05,
+) -> dict[int, float]:
+    """Print and return the average Recall@k for the student results."""
     dataset = load_json(dataset_path)
     student_data = load_json(student_search_result_path)
 
