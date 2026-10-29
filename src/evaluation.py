@@ -47,7 +47,7 @@ def recall_number_k(expected_s, retrieved_s, k, iou_threshold):
             if is_chunk_valid(expected, retrieved, iou_threshold):
                 matched += 1
                 break
-    
+
     return matched / len(expected_s)
 
 
@@ -63,16 +63,12 @@ def eval(
     questions = dataset["rag_questions"]
     student_results = student_data["search_results"]
 
-    # Match each student result to its question ID.
     student_by_id = {
         result["question_id"]: result["retrieved_sources"]
         for result in student_results
     }
 
-    # Only evaluate questions with matching student results
-    # and at least one ground-truth source.
     evaluated_questions = []
-    missing_questions = 0
 
     for question in questions:
         question_id = question["question_id"]
@@ -96,7 +92,6 @@ def eval(
         print("No questions available for evaluation.")
         return {}
 
-    # Calculate macro-average Recall@k across evaluated questions.
     k_values = [value for value in (1, 3, 5, 10) if value <= k]
 
     if k not in k_values:

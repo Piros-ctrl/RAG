@@ -1,8 +1,8 @@
-# import json
-import pickle
-import json, os
-from pathlib import Path
+import os
+import json
 import bm25s
+from typing import List, Dict, Any
+from pathlib import Path
 from src.models import (RagDataset,
                         MinimalSource,
                         UnansweredQuestion,
@@ -31,41 +31,41 @@ class Retriever:
         return list(docs[0])
 
     def creat_dataset(self, dataset, k):
-            search_result = []
-            with open(dataset, "r") as p_file:
-                data = RagDataset.model_validate_json(p_file.read())
+        search_result = []
+        with open(dataset, "r") as p_file:
+            data = RagDataset.model_validate_json(p_file.read())
 
-            for data in data.rag_questions:
-                question_obj = UnansweredQuestion(
-                    question_id=data.question_id,
-                    question=data.question
-                )
-                question = question_obj.model_dump()
-                outputs = self.piked_chunk(data.question, k)
-                retrieved_sources = []
-
-                for output in outputs:
-                    source = MinimalSource(
-                        file_path=output["file_path"],
-                        first_character_index=output["first_char"],
-                        last_character_index=output["last_char"]
-                    )
-                    retrieved_sources.append(source)
-
-                resutl = MinimalSearchResults(
-                    question_id=question["question_id"],
-                    question=question["question"],
-                    retrieved_sources=retrieved_sources
-                )
-
-                search_result.append(resutl)
-            output = StudentSearchResults(
-                search_results=search_result,
-                k=k
+        for data in data.rag_questions:
+            question_obj = UnansweredQuestion(
+                question_id=data.question_id,
+                question=data.question
             )
-            return output.model_dump()
+            question = question_obj.model_dump()
+            outputs = self.piked_chunk(data.question, k)
+            retrieved_sources = []
 
-    def save_result(self,dataset, k, s_dir):
+            for output in outputs:
+                source = MinimalSource(
+                    file_path=output["file_path"],
+                    first_character_index=output["first_char"],
+                    last_character_index=output["last_char"]
+                )
+                retrieved_sources.append(source)
+
+            resutl = MinimalSearchResults(
+                question_id=question["question_id"],
+                question=question["question"],
+                retrieved_sources=retrieved_sources
+            )
+
+            search_result.append(resutl)
+        output = StudentSearchResults(
+            search_results=search_result,
+            k=k
+        )
+        return output.model_dump()
+
+    def save_result(self, dataset, k, s_dir):
         os.makedirs(s_dir, exist_ok=True)
 
         name = os.path.splitext(os.path.basename(dataset))[0]

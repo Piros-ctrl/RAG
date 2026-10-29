@@ -1,4 +1,5 @@
-import json, uuid
+import json
+import uuid
 from pick_chunk import Indexer
 from search import Retriever
 from get_answer import Answer
@@ -9,6 +10,8 @@ from src.models import (MinimalAnswer,
 
 
 path = "data/raw/vllm-0.10.1"
+
+
 class CLI:
     def __init__(self):
         self.qwen = Small_LLM_Model()
@@ -25,10 +28,11 @@ class CLI:
                 f"{output['file_path']} "
                 f"[{output['first_char']}:{output['last_char']}]")
 
-    def search_dataset(self,
+    def search_dataset(
+                        self,
                         dataset_path: str,
                         k: int = 5,
-                        save_directory: str="data/search_results"
+                        save_directory: str = "data/search_results"
                         ):
         ret = Retriever()
         ret.save_result(dataset_path, k, save_directory)
@@ -42,8 +46,8 @@ class CLI:
 
     def answer_dataset(self,
                        student_search_result_path: str,
-                       save_directory: str="data/output",
-                       k: int=5
+                       save_directory: str = "data/output",
+                       k: int = 5
                        ):
         chunk = Retriever()
 
@@ -74,12 +78,14 @@ class CLI:
                 k=k
             )
 
-        with open(save_directory + "/search_result_and_answer.json", "w") as file:
+        s_dir = save_directory
+        with open(s_dir + "/search_result_and_answer.json", "w") as file:
             json.dump(output.model_dump(), file, indent=4)
 
-        print(f"The operation Done file saved in {save_directory}")
+        print(f"The operation Done file saved in {s_dir}")
 
-    def evaluate(self,
+    def evaluate(
+                self,
                 student_search_result_path: str,
                 dataset_path: str,
                 k: int = 10):
