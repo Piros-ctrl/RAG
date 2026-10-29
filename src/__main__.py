@@ -1,5 +1,5 @@
 import fire
-from cli import CLI
+from src.cli import CLI
 
 
 def main() -> None:
@@ -7,7 +7,8 @@ def main() -> None:
     fire.Fire(CLI)
 
 
-try:
-    main()
-except BaseException as e:
-    print(e)
+main()
+# try:
+#     main()
+# except BaseException as e:
+#     print(e)

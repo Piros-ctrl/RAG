@@ -57,7 +57,7 @@ class Answer:
         encoded_prompt = self._tokiniz()
         respond = ""
         while 1:
-            logits = self.qwen.get_logits_from_input_ids(encoded_prompt)
+            logits = self.qwen.get_logits(encoded_prompt)
             next_token = logits.index(max(logits))
             encoded_prompt.append(next_token)
             respond += self.qwen.decode([next_token])

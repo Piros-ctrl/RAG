@@ -1,15 +1,15 @@
 import json
 import uuid
-from pick_chunk import Indexer
-from search import Retriever
-from get_answer import Answer
-from llm_sdk.llm_sdk import Small_LLM_Model
+from src.pick_chunk import Indexer
+from src.search import Retriever
+from src.get_answer import Answer
+from src.qwen import LLM_Model
 from src.evaluation import eval
 from src.models import (MinimalAnswer,
                         StudentSearchResultsAndAnswer)
 
 
-path = "data/raw/vllm-0.10.1"
+path = "data"
 
 
 class CLI:
@@ -17,7 +17,7 @@ class CLI:
 
     def __init__(self) -> None:
         """Load the small LLM model."""
-        self.qwen = Small_LLM_Model()
+        self.qwen = LLM_Model()
 
     def index(self, max_chunk_size: int = 2000) -> None:
         """Build the chunk index from the raw data folder."""

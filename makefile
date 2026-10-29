@@ -22,7 +22,7 @@ lint:
 	uv run mypy . --warn-return-any --warn-unused-ignores --ignore-missing-imports --disallow-untyped-defs --check-untyped-defs
 
 index:
-	$(PYTHON) -m $(MODULE) $(ARGS) --max_chunk_size 1500
+	$(PYTHON) -m $(MODULE) $(ARGS) --max_chunk_size 2000
 
 search:
 	$(PYTHON) -m $(MODULE) search "What does the vllm mean" --k 10
